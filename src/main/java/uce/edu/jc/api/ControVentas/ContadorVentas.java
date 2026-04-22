@@ -1,4 +1,4 @@
-package uce.edu.jc.api.facturera;
+package uce.edu.jc.api.ControVentas;
 
 import jakarta.inject.Singleton;
 

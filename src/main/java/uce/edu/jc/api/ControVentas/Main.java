@@ -1,4 +1,4 @@
-package uce.edu.jc.api.facturera;
+package uce.edu.jc.api.ControVentas;
 
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
@@ -50,7 +50,7 @@ public class Main {
 
             System.out.println("\nDESDE OTRA CLASE GESTOR DE TIENDA");
             gestor.realizarCompra("Teclado", 1);
-            gestor.realizarCompra("Teclascsfdghdo", 1);    
+            gestor.realizarCompra("Teclado", 1);    
 
             
 
