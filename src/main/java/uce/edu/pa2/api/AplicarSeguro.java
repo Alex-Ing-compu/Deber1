@@ -5,14 +5,12 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 @Priority(2)
-public class DescuentoIVA implements  Descuento{
+public class AplicarSeguro implements ProcesoPedido{
 
     @Override
     public double aplicar(double valor) {
-        System.out.println("Aplicando IVA");
-        double valorADescontar = valor * 0.15;
-        return valor - valorADescontar;
-        //return valor * 1.15;
+        System.out.println("Aplicando seguro...");
+        return valor + 2.5;
     }
 
 }

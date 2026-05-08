@@ -19,6 +19,4 @@ import jakarta.interceptor.InterceptorBinding;
 //Estamos declarando un interceptor
 public @interface Log {
 
-    
-
 }

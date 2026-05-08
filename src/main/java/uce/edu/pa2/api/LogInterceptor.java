@@ -28,8 +28,6 @@ public class LogInterceptor {
 
         Object resultado = contex.proceed();
         
-  
-
         return resultado;
 
     }
