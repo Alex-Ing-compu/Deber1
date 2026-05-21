@@ -10,38 +10,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-
 //reconoce la clase Estidiante como una entidad en la BD
 @Entity
-//mapea el nombre en la base de datos 
-@Table(name="estudiante")
+// mapea el nombre en la base de datos
+@Table(name = "estudiante")
 public class Estudiante {
 
     @Id
-    @SequenceGenerator(name = "seq_estudiante_generador", sequenceName="seq_estudiante", allocationSize = 1)
+    @SequenceGenerator(name = "seq_estudiante_generador", sequenceName = "seq_estudiante", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_estudiante_generador")
-    
 
-    //tener prefijo que identifique a la tabla :nomenclatura para idetificar en la BD " @Column(name="estu_id")"
-    @Column(name="estu_id")
+    // tener prefijo que identifique a la tabla :nomenclatura para idetificar en la
+    // BD " @Column(name="estu_id")"
+    @Column(name = "estu_id")
     private Integer id;
 
-    @Column(name="estu_nombre")
+    @Column(name = "estu_nombre")
     private String nombre;
 
-    @Column(name="estu_apellido")
+    @Column(name = "estu_apellido")
     private String apellido;
 
-    @Column(name="estu_fecha_nacimiento")
+    @Column(name = "estu_fecha_nacimiento")
     private LocalDate fechaNacimiento;
-    
 
-    @Column(name="estu_genero")
+    @Column(name = "estu_genero")
     private String genero;
 
-
-
-    //GET Y SET
+    // GET Y SET
     public Integer getId() {
         return id;
     }
@@ -74,7 +70,6 @@ public class Estudiante {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-
     public String getGenero() {
         return genero;
     }
@@ -82,4 +77,18 @@ public class Estudiante {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Estudiante{");
+        sb.append("id=").append(id);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", apellido=").append(apellido);
+        sb.append(", fechaNacimiento=").append(fechaNacimiento);
+        sb.append(", genero=").append(genero);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
