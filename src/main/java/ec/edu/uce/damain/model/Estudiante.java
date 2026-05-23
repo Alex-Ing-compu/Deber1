@@ -37,6 +37,9 @@ public class Estudiante {
     @Column(name = "estu_genero")
     private String genero;
 
+    @Column(name="estu_cedula")
+    private String cedula;
+
     // GET Y SET
     public Integer getId() {
         return id;
@@ -78,17 +81,19 @@ public class Estudiante {
         this.genero = genero;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Estudiante{");
-        sb.append("id=").append(id);
-        sb.append(", nombre=").append(nombre);
-        sb.append(", apellido=").append(apellido);
-        sb.append(", fechaNacimiento=").append(fechaNacimiento);
-        sb.append(", genero=").append(genero);
-        sb.append('}');
-        return sb.toString();
+     public String getCedula() {
+        return cedula;
     }
 
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
+                + fechaNacimiento + ", genero=" + genero + ", cedula=" + cedula + "]";
+    }
+
+    
 }

@@ -1,6 +1,7 @@
 package ec.edu.uce;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import ec.edu.uce.aplication.service.EstudianteService;
 import ec.edu.uce.aplication.service.ProfesorService;
@@ -45,14 +46,13 @@ public class Main {
             profe.setCorreo("andy@uce.edu.ec");
 
             // Guardar
-            this.estudianteService.guardar(estudiante);
+          //  this.estudianteService.guardar(estudiante);
 
             // Guardar
-            this.profesorService.guardar(profe);
+          //  this.profesorService.guardar(profe);
 
-            //Bucasr profe por ID
-            System.out.println(this.profesorService.buscarPorId(2).toString());
-            
+            // Bucasr profe por ID
+           // System.out.println(this.profesorService.buscarPorId(2).toString());
 
             // Actualizar
             // Estudiante estudiante2 = this.estudianteService.buscarPorId(4);
@@ -67,6 +67,25 @@ public class Main {
             // Bucascar porm ID
             // System.out.println(this.estudianteService.buscarPorId(1).toString());
             // this.estudianteService.buscarPorId(1);
+
+            // ---------------------------
+            /*
+            List<Estudiante> lista = estudianteService.buscarTodos();
+
+            for (Estudiante e : lista) {
+                System.out.println(e);
+            }
+               */
+
+             List<Estudiante> lista = estudianteService.buscarPorNombre("Jhon");
+
+            for (Estudiante e : lista) {
+                System.out.println(e);
+            }
+
+            String cedula = "1001234564";
+            Estudiante estu = this.estudianteService.buscarPorCedula(cedula);
+            System.out.println("Econtrado:"+estu);
 
             return 0;
         }
