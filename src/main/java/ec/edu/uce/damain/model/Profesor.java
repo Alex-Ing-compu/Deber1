@@ -31,6 +31,17 @@ public class Profesor {
     @Column(name="prof_correo")
     private String correo;
 
+
+    @Column(name="prof_cuidad")
+    private String ciudad;
+    @Column(name="prof_pais")
+    private String pais;
+    @Column(name="prof_genero")
+    private String genero;
+    @Column(name="prof_estado")
+    private boolean estado;    
+
+
     //getter and setters
     public Integer getId() {
         return id;
@@ -62,17 +73,39 @@ public class Profesor {
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-   
+
+
+
+    public String getCiudad() {
+        return ciudad;
+    }
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
+    public String getPais() {
+        return pais;
+    }
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+    public String getGenero() {
+        return genero;
+    }
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+    public boolean isEstado() {
+        return estado;
+    }
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
 
     @Override
     public String toString() {
-        return "Profesor{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", especialidad='" + especialidad + '\'' +
-                ", correo='" + correo + '\'' +
-                '}';
+        return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", especialidad=" + especialidad
+                + ", correo=" + correo + ", ciudad=" + ciudad + ", pais=" + pais + ", genero=" + genero + ", estado="
+                + estado + "]";
     }
 
 

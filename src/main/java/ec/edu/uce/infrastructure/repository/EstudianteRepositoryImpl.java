@@ -41,6 +41,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
         this.em.remove(this.seleccionarPorId(id));
     }
 
+
     @Override
     public List<Estudiante> seleccionarTodos() {
         TypedQuery<Estudiante> miQuery = this.em.createQuery("SELECT e FROM Estudiante e",Estudiante.class);
@@ -65,11 +66,6 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
         
          return miQuery.getResultList().getFirst();
     }
-
- 
-
-    
-
 
     
 }

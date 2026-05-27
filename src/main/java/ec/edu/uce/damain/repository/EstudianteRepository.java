@@ -17,4 +17,5 @@ public interface EstudianteRepository {
     public List<Estudiante> seleccionarPorNombre(String nombre);
     public Estudiante seleccionarPorCedula(String cedula);
 
+    
 }

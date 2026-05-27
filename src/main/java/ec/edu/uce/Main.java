@@ -38,13 +38,7 @@ public class Main {
             estudiante.setFechaNacimiento(LocalDate.of(2003, 06, 10));
             estudiante.setGenero("M");
 
-            // CREAR PROFESOR
-            Profesor profe = new Profesor();
-            profe.setNombre("Andy");
-            profe.setApellido("Suquilandy");
-            profe.setEspecialidad("Civil");
-            profe.setCorreo("andy@uce.edu.ec");
-
+        
             // Guardar
           //  this.estudianteService.guardar(estudiante);
 
@@ -77,6 +71,7 @@ public class Main {
             }
                */
 
+            /*
              List<Estudiante> lista = estudianteService.buscarPorNombre("Jhon");
 
             for (Estudiante e : lista) {
@@ -86,6 +81,61 @@ public class Main {
             String cedula = "1001234564";
             Estudiante estu = this.estudianteService.buscarPorCedula(cedula);
             System.out.println("Econtrado:"+estu);
+            */
+
+
+            // CREAR PROFESOR
+            Profesor profe = new Profesor();
+            profe.setApellido("Escola");
+            profe.setCorreo("anthony@uce.edu.ec");
+            profe.setEspecialidad("Civil");
+            profe.setNombre("Anthony");
+            profe.setCiudad("Londres");
+            profe.setEstado(true);
+            profe.setGenero("M");
+            profe.setPais("Inglaterra");
+
+            this.profesorService.actualizar(profe);
+
+            //CONSULTAS DE PROFES Y CONSULLTAS
+            System.out.println("BUSCAR POR ESPECIALIDAD");
+            List<Profesor> porEspecialidad = this.profesorService.buscarPorEspecialidad("Derecho");
+            for (Profesor p : porEspecialidad) {
+                System.out.println(p);
+            }
+
+            System.out.println("BUSCAR POR APROXIMACION DE APELLIDO");
+            List<Profesor> porApellido = this.profesorService.buscarPorAproximacionApellido("cola");
+            for (Profesor p : porApellido) {
+                System.out.println(p);
+            }
+
+            System.out.println("BUSCAR POR DOMINIO");
+            List<Profesor> porDominio = this.profesorService.buscarPorDominioCorreo("@uce.edu.ec");
+            for (Profesor p : porDominio) {
+                System.out.println(p);
+            }
+
+            System.out.println("BUSCAR TODOS LOS QUE ESTAN ACTIVOS");
+            List<Profesor> activosEcuador = this.profesorService.buscarSoloActivos();
+            for (Profesor p : activosEcuador) {
+                System.out.println(p);
+            }
+
+            System.out.println("BUSCAR POR PAIS");
+            List<Profesor> bucarPorPais = this.profesorService.buscarPorPais("Ecuador");
+            for (Profesor p : bucarPorPais) {
+                System.out.println(p);
+            }
+
+
+
+
+
+
+
+
+
 
             return 0;
         }
