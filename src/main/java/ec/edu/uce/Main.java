@@ -156,7 +156,18 @@ public class Main {
             System.out.println("CONTAR");
             Long contar = estudianteService.contar();
             System.out.println("Total de estudiantes:"+ contar);
-            
+
+            //NATIVE QUERYYY
+            System.out.println("NATIVE QUEY");
+            List<Estudiante> nativeEstu = this.estudianteService.seleccionarTodosNative();
+            for(Estudiante e: nativeEstu){
+                System.out.println(e);
+            }
+
+
+
+
+
 
 
             return 0;

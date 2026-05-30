@@ -101,10 +101,13 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
         return myQuery.getSingleResult();
     }
 
-
-    
-
-
+    @Override
+    @SuppressWarnings("unchecked") //para quitar los warning 
+    public List<Estudiante> seleccionarTodosNative() {
+      Query myQuery = this.em.createNativeQuery("SELECT * FROM estudiante", Estudiante.class);
+      return myQuery.getResultList();
+    }
+ 
     
 
 
