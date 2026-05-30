@@ -65,4 +65,7 @@ public class EstudianteService {
         return this.estudianteRepository.seleccionaPorRangoFechas(fechaInicion, fehcaFin);
     }
 
+    public Long contar(){
+        return this.estudianteRepository.contar();
+    }
 }

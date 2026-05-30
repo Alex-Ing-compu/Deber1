@@ -151,9 +151,12 @@ public class Main {
             List<Estudiante> selecccionarPorFecha = this.estudianteService.seleccionaPorRangoFechas(LocalDate.of(2002, 01, 1), LocalDate.of(2003, 02, 25));
             for(Estudiante e: selecccionarPorFecha){
                 System.out.println(e);
-            }
 
-   
+            }
+            System.out.println("CONTAR");
+            Long contar = estudianteService.contar();
+            System.out.println("Total de estudiantes:"+ contar);
+            
 
 
             return 0;
