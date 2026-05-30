@@ -1,5 +1,6 @@
 package ec.edu.uce.aplication.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ec.edu.uce.damain.model.Estudiante;
@@ -51,5 +52,17 @@ public class EstudianteService {
         return this.estudianteRepository.seleccionarPorCedula(cedula);
     }
 
+    //1.2 name query
+    public List<Estudiante> seleccionarPorGenero(String genero){
+        return this.estudianteRepository.seleccionarPorGenero(genero);
+    }
+
+    public List<Estudiante> seleccionarPorGeneroTyped(String genero){
+        return this.estudianteRepository.seleccionarPorGeneroTyped(genero);
+    }
+
+    public List<Estudiante> seleccionaPorRangoFechas(LocalDate fechaInicion, LocalDate fehcaFin){
+        return this.estudianteRepository.seleccionaPorRangoFechas(fechaInicion, fehcaFin);
+    }
 
 }

@@ -95,9 +95,12 @@ public class Main {
             profe.setGenero("M");
             profe.setPais("Inglaterra");
 
+            /*
+
+
             this.profesorService.actualizar(profe);
 
-            //CONSULTAS DE PROFES Y CONSULLTAS
+            //CONSULTAS  
             System.out.println("BUSCAR POR ESPECIALIDAD");
             List<Profesor> porEspecialidad = this.profesorService.buscarPorEspecialidad("Derecho");
             for (Profesor p : porEspecialidad) {
@@ -128,13 +131,29 @@ public class Main {
                 System.out.println(p);
             }
 
+             */
+
+            System.out.println("Normallllllllll");
+            List<Estudiante> buscarPorGenero = this.estudianteService.seleccionarPorGenero("M");
+            for (Estudiante elem : buscarPorGenero) {
+                System.out.println(elem);
+            }
+
+            System.out.println("typedddddddddddddddddddd");
+
+            List<Estudiante> buscarPorGeneroTyped = this.estudianteService.seleccionarPorGeneroTyped("M");
+            for (Estudiante elem : buscarPorGeneroTyped) {
+                System.out.println(elem);
+            }
 
 
+            System.out.println("Fechaaaaaaaa");
+            List<Estudiante> selecccionarPorFecha = this.estudianteService.seleccionaPorRangoFechas(LocalDate.of(2002, 01, 1), LocalDate.of(2003, 02, 25));
+            for(Estudiante e: selecccionarPorFecha){
+                System.out.println(e);
+            }
 
-
-
-
-
+   
 
 
             return 0;

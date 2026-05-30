@@ -1,5 +1,6 @@
 package ec.edu.uce.infrastructure.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ec.edu.uce.damain.model.Estudiante;
@@ -7,6 +8,7 @@ import ec.edu.uce.damain.repository.EstudianteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -42,6 +44,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
     }
 
 
+    //1.1 TypeQuery
     @Override
     public List<Estudiante> seleccionarTodos() {
         TypedQuery<Estudiante> miQuery = this.em.createQuery("SELECT e FROM Estudiante e",Estudiante.class);
@@ -66,6 +69,46 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
         
          return miQuery.getResultList().getFirst();
     }
+
+    //1.2 Name Query    
+
+    @Override
+    public List<Estudiante> seleccionarPorGenero(String genero) {
+       Query myQuery = this.em.createNamedQuery("Estudiante.buscarPorGenero");
+       myQuery.setParameter("genero", genero);
+       return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Estudiante> seleccionarPorGeneroTyped(String genero) {
+       TypedQuery<Estudiante> myQuery = this.em.createNamedQuery("Estudiante.buscarPorGenero", Estudiante.class);
+       myQuery.setParameter("genero", genero);
+       return myQuery.getResultList();
+    }
+
+
+    @Override
+    public List<Estudiante> seleccionaPorRangoFechas(LocalDate fechaInicio, LocalDate fechaFin) {
+        TypedQuery<Estudiante> myQuery = this.em.createNamedQuery("Estudiante.buscarRangoFecha", Estudiante.class);
+        myQuery.setParameter("inicio", fechaInicio);
+        myQuery.setParameter("fin", fechaFin);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public Long contar() {
+        TypedQuery<Long> myQuery = this.em.createNamedQuery("Estudiante.contar", Long.class);
+        return myQuery.getSingleResult();
+    }
+
+
+    
+
+
+    
+
+
+
 
     
 }

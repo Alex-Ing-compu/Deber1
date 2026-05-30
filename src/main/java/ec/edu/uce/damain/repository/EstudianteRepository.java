@@ -1,5 +1,6 @@
 package ec.edu.uce.damain.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ec.edu.uce.damain.model.Estudiante;
@@ -16,6 +17,15 @@ public interface EstudianteRepository {
     public List<Estudiante> seleccionarTodos();
     public List<Estudiante> seleccionarPorNombre(String nombre);
     public Estudiante seleccionarPorCedula(String cedula);
+
+    //1.2NamedQuery
+    public List<Estudiante> seleccionarPorGenero(String genero);
+
+    public List<Estudiante> seleccionarPorGeneroTyped(String genero);
+
+    public List<Estudiante> seleccionaPorRangoFechas(LocalDate fechaInicio, LocalDate fechaFin );
+
+    public Long contar();
 
     
 }
