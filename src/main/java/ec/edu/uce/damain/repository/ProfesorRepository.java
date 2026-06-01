@@ -28,4 +28,15 @@ public interface ProfesorRepository {
     public List<Profesor> seleccionarPorApellidoLike(String texto);
     public List<Profesor> seleccionarPorDominioCorreo(String dominio);
 
+    //NamedQuery
+
+    public List<Profesor> seleccionarPorGenero(String genero);
+
+    public List<Profesor> seleccionarPorGeneroTyped(String genero);
+
+    public List<Profesor> seleccionarPorPaisNamed(String pais);
+
+    public Long contar();
+
+
 }

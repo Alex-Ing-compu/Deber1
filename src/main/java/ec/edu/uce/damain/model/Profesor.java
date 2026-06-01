@@ -5,11 +5,38 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="profesor")
+
+//NameQuery
+@NamedQueries({
+    @NamedQuery(
+        name="Profesor.buscarPorGenero",
+        query="SELECT p FROM Profesor p WHERE p.genero = :genero"
+    ),
+
+    @NamedQuery(
+        name="Profesor.buscarPorApellido",
+        query="SELECT p FROM Profesor p WHERE p.apellido = :apellido"
+    ),
+
+    @NamedQuery(
+        name="Profesor.buscarPorPais",
+        query="SELECT p FROM Profesor p WHERE p.pais = :pais"
+    ),
+
+    @NamedQuery(
+        name="Profesor.contar",
+        query="SELECT COUNT(p) FROM Profesor p"
+    )
+
+})
+
 public class Profesor {
 
     @Id
@@ -31,7 +58,7 @@ public class Profesor {
     @Column(name="prof_correo")
     private String correo;
 
-
+    
     @Column(name="prof_cuidad")
     private String ciudad;
     @Column(name="prof_pais")
@@ -39,8 +66,11 @@ public class Profesor {
     @Column(name="prof_genero")
     private String genero;
     @Column(name="prof_estado")
-    private boolean estado;    
-
+    private boolean estado;  
+    
+    @Column(name="prof_salario")
+    private Double salario; 
+    
 
     //getter and setters
     public Integer getId() {
@@ -100,12 +130,21 @@ public class Profesor {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
+
 
     @Override
     public String toString() {
         return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", especialidad=" + especialidad
                 + ", correo=" + correo + ", ciudad=" + ciudad + ", pais=" + pais + ", genero=" + genero + ", estado="
-                + estado + "]";
+                + estado + ", salario=" + salario + "]";
     }
 
 

@@ -133,6 +133,8 @@ public class Main {
 
              */
 
+
+            /*
             System.out.println("Normallllllllll");
             List<Estudiante> buscarPorGenero = this.estudianteService.seleccionarPorGenero("M");
             for (Estudiante elem : buscarPorGenero) {
@@ -158,14 +160,37 @@ public class Main {
             System.out.println("Total de estudiantes:"+ contar);
 
             //NATIVE QUERYYY
+
             System.out.println("NATIVE QUEY");
             List<Estudiante> nativeEstu = this.estudianteService.seleccionarTodosNative();
             for(Estudiante e: nativeEstu){
                 System.out.println(e);
             }
 
+            */
+            
+            //NAMEDQUERY CON ENTIDAD PROFESOR
+            System.out.println("NORMAL");
+            List<Profesor> profesores = profesorService.seleccionarPorGenero("M");
+            for(Profesor p : profesores){
+                System.out.println(p);
+            }
 
+            System.out.println("TYPED");
+            List<Profesor> profesoresTyped = profesorService.seleccionarPorGeneroTyped("M");
+            for(Profesor p : profesoresTyped){
+                System.out.println(p);
+            }
 
+            System.out.println("PAIS");
+            List<Profesor> profesoresPais = profesorService.seleccionarPorPaisNamed("Ecuador");
+            for(Profesor p : profesoresPais){
+                System.out.println(p);
+            }
+
+            System.out.println("CONTAR");
+            Long total = profesorService.contar();
+            System.out.println("Total profesores: " + total);
 
 
 

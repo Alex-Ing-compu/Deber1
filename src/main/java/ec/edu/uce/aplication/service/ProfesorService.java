@@ -73,4 +73,22 @@ public class ProfesorService {
         return this.profesorRepository.seleccionarPorDominioCorreo(dominio);
     }
 
+
+    //NamedQuery
+    public List<Profesor> seleccionarPorGenero(String genero){
+        return this.profesorRepository.seleccionarPorGenero(genero);
+    }
+
+    public List<Profesor> seleccionarPorGeneroTyped(String genero){
+        return this.profesorRepository.seleccionarPorGeneroTyped(genero);
+    }
+
+    public List<Profesor> seleccionarPorPaisNamed(String pais){
+        return this.profesorRepository.seleccionarPorPaisNamed(pais);
+    }
+
+    public Long contar(){
+        return this.profesorRepository.contar();
+    }
+
 }

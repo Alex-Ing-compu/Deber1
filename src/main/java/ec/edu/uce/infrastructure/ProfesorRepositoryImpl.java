@@ -8,6 +8,7 @@ import ec.edu.uce.damain.repository.ProfesorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -102,6 +103,36 @@ public class ProfesorRepositoryImpl implements ProfesorRepository{
         // Concatenamos % solo al principio
         miQuery.setParameter("dominio", "%" + dominio);
         return miQuery.getResultList();
+    }
+
+    //NamedQuery
+
+    @Override
+    public List<Profesor> seleccionarPorGenero(String genero) {
+        Query myQuery = this.em.createNamedQuery("Profesor.buscarPorGenero");
+        myQuery.setParameter("genero", genero);
+        return myQuery.getResultList();
+    }
+
+    
+    public List<Profesor> seleccionarPorGeneroTyped(String genero) {
+        TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorGenero", Profesor.class);
+        myQuery.setParameter("genero", genero);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorPaisNamed(String pais) {
+       TypedQuery<Profesor> myQuery = this.em.createNamedQuery("Profesor.buscarPorPais", Profesor.class);
+       myQuery.setParameter("pais", pais);
+        return myQuery.getResultList();
+    }
+
+    @Override
+    public Long contar() {
+        TypedQuery<Long> myQuery = this.em.createNamedQuery("Profesor.contar", Long.class);
+
+    return myQuery.getSingleResult();
     }
 
 }
