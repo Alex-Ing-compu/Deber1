@@ -38,5 +38,10 @@ public interface ProfesorRepository {
 
     public Long contar();
 
+    //NativeQuery
+    List<Profesor> seleccionarPorPaisNative(String pais);
+    List<Profesor> seleccionarActivosNative();
+    List<Profesor> seleccionarPorEspecialidadNative(String especialidad);
+
 
 }

@@ -38,15 +38,14 @@ public class Main {
             estudiante.setFechaNacimiento(LocalDate.of(2003, 06, 10));
             estudiante.setGenero("M");
 
-        
             // Guardar
-          //  this.estudianteService.guardar(estudiante);
+            // this.estudianteService.guardar(estudiante);
 
             // Guardar
-          //  this.profesorService.guardar(profe);
+            // this.profesorService.guardar(profe);
 
             // Bucasr profe por ID
-           // System.out.println(this.profesorService.buscarPorId(2).toString());
+            // System.out.println(this.profesorService.buscarPorId(2).toString());
 
             // Actualizar
             // Estudiante estudiante2 = this.estudianteService.buscarPorId(4);
@@ -64,25 +63,24 @@ public class Main {
 
             // ---------------------------
             /*
-            List<Estudiante> lista = estudianteService.buscarTodos();
-
-            for (Estudiante e : lista) {
-                System.out.println(e);
-            }
-               */
+             * List<Estudiante> lista = estudianteService.buscarTodos();
+             * 
+             * for (Estudiante e : lista) {
+             * System.out.println(e);
+             * }
+             */
 
             /*
-             List<Estudiante> lista = estudianteService.buscarPorNombre("Jhon");
-
-            for (Estudiante e : lista) {
-                System.out.println(e);
-            }
-
-            String cedula = "1001234564";
-            Estudiante estu = this.estudianteService.buscarPorCedula(cedula);
-            System.out.println("Econtrado:"+estu);
-            */
-
+             * List<Estudiante> lista = estudianteService.buscarPorNombre("Jhon");
+             * 
+             * for (Estudiante e : lista) {
+             * System.out.println(e);
+             * }
+             * 
+             * String cedula = "1001234564";
+             * Estudiante estu = this.estudianteService.buscarPorCedula(cedula);
+             * System.out.println("Econtrado:"+estu);
+             */
 
             // CREAR PROFESOR
             Profesor profe = new Profesor();
@@ -96,102 +94,132 @@ public class Main {
             profe.setPais("Inglaterra");
 
             /*
-
-
-            this.profesorService.actualizar(profe);
-
-            //CONSULTAS  
-            System.out.println("BUSCAR POR ESPECIALIDAD");
-            List<Profesor> porEspecialidad = this.profesorService.buscarPorEspecialidad("Derecho");
-            for (Profesor p : porEspecialidad) {
-                System.out.println(p);
-            }
-
-            System.out.println("BUSCAR POR APROXIMACION DE APELLIDO");
-            List<Profesor> porApellido = this.profesorService.buscarPorAproximacionApellido("cola");
-            for (Profesor p : porApellido) {
-                System.out.println(p);
-            }
-
-            System.out.println("BUSCAR POR DOMINIO");
-            List<Profesor> porDominio = this.profesorService.buscarPorDominioCorreo("@uce.edu.ec");
-            for (Profesor p : porDominio) {
-                System.out.println(p);
-            }
-
-            System.out.println("BUSCAR TODOS LOS QUE ESTAN ACTIVOS");
-            List<Profesor> activosEcuador = this.profesorService.buscarSoloActivos();
-            for (Profesor p : activosEcuador) {
-                System.out.println(p);
-            }
-
-            System.out.println("BUSCAR POR PAIS");
-            List<Profesor> bucarPorPais = this.profesorService.buscarPorPais("Ecuador");
-            for (Profesor p : bucarPorPais) {
-                System.out.println(p);
-            }
-
+             * 
+             * 
+             * this.profesorService.actualizar(profe);
+             * 
+             * //CONSULTAS
+             * System.out.println("BUSCAR POR ESPECIALIDAD");
+             * List<Profesor> porEspecialidad =
+             * this.profesorService.buscarPorEspecialidad("Derecho");
+             * for (Profesor p : porEspecialidad) {
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("BUSCAR POR APROXIMACION DE APELLIDO");
+             * List<Profesor> porApellido =
+             * this.profesorService.buscarPorAproximacionApellido("cola");
+             * for (Profesor p : porApellido) {
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("BUSCAR POR DOMINIO");
+             * List<Profesor> porDominio =
+             * this.profesorService.buscarPorDominioCorreo("@uce.edu.ec");
+             * for (Profesor p : porDominio) {
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("BUSCAR TODOS LOS QUE ESTAN ACTIVOS");
+             * List<Profesor> activosEcuador = this.profesorService.buscarSoloActivos();
+             * for (Profesor p : activosEcuador) {
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("BUSCAR POR PAIS");
+             * List<Profesor> bucarPorPais = this.profesorService.buscarPorPais("Ecuador");
+             * for (Profesor p : bucarPorPais) {
+             * System.out.println(p);
+             * }
+             * 
              */
 
+            /*
+             * System.out.println("Normallllllllll");
+             * List<Estudiante> buscarPorGenero =
+             * this.estudianteService.seleccionarPorGenero("M");
+             * for (Estudiante elem : buscarPorGenero) {
+             * System.out.println(elem);
+             * }
+             * 
+             * System.out.println("typedddddddddddddddddddd");
+             * 
+             * List<Estudiante> buscarPorGeneroTyped =
+             * this.estudianteService.seleccionarPorGeneroTyped("M");
+             * for (Estudiante elem : buscarPorGeneroTyped) {
+             * System.out.println(elem);
+             * }
+             * 
+             * 
+             * System.out.println("Fechaaaaaaaa");
+             * List<Estudiante> selecccionarPorFecha =
+             * this.estudianteService.seleccionaPorRangoFechas(LocalDate.of(2002, 01, 1),
+             * LocalDate.of(2003, 02, 25));
+             * for(Estudiante e: selecccionarPorFecha){
+             * System.out.println(e);
+             * 
+             * }
+             * System.out.println("CONTAR");
+             * Long contar = estudianteService.contar();
+             * System.out.println("Total de estudiantes:"+ contar);
+             * 
+             * //NATIVE QUERYYY
+             * 
+             * System.out.println("NATIVE QUEY");
+             * List<Estudiante> nativeEstu =
+             * this.estudianteService.seleccionarTodosNative();
+             * for(Estudiante e: nativeEstu){
+             * System.out.println(e);
+             * }
+             * 
+             */
 
             /*
-            System.out.println("Normallllllllll");
-            List<Estudiante> buscarPorGenero = this.estudianteService.seleccionarPorGenero("M");
-            for (Estudiante elem : buscarPorGenero) {
-                System.out.println(elem);
-            }
+             * //NAMEDQUERY CON ENTIDAD PROFESOR
+             * System.out.println("NORMAL");
+             * List<Profesor> profesores = profesorService.seleccionarPorGenero("M");
+             * for(Profesor p : profesores){
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("TYPED");
+             * List<Profesor> profesoresTyped =
+             * profesorService.seleccionarPorGeneroTyped("M");
+             * for(Profesor p : profesoresTyped){
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("PAIS");
+             * List<Profesor> profesoresPais =
+             * profesorService.seleccionarPorPaisNamed("Ecuador");
+             * for(Profesor p : profesoresPais){
+             * System.out.println(p);
+             * }
+             * 
+             * System.out.println("CONTAR");
+             * Long total = profesorService.contar();
+             * System.out.println("Total profesores: " + total);
+             * 
+             */
 
-            System.out.println("typedddddddddddddddddddd");
-
-            List<Estudiante> buscarPorGeneroTyped = this.estudianteService.seleccionarPorGeneroTyped("M");
-            for (Estudiante elem : buscarPorGeneroTyped) {
-                System.out.println(elem);
-            }
-
-
-            System.out.println("Fechaaaaaaaa");
-            List<Estudiante> selecccionarPorFecha = this.estudianteService.seleccionaPorRangoFechas(LocalDate.of(2002, 01, 1), LocalDate.of(2003, 02, 25));
-            for(Estudiante e: selecccionarPorFecha){
-                System.out.println(e);
-
-            }
-            System.out.println("CONTAR");
-            Long contar = estudianteService.contar();
-            System.out.println("Total de estudiantes:"+ contar);
-
-            //NATIVE QUERYYY
-
-            System.out.println("NATIVE QUEY");
-            List<Estudiante> nativeEstu = this.estudianteService.seleccionarTodosNative();
-            for(Estudiante e: nativeEstu){
-                System.out.println(e);
-            }
-
-            */
-            
-            //NAMEDQUERY CON ENTIDAD PROFESOR
-            System.out.println("NORMAL");
-            List<Profesor> profesores = profesorService.seleccionarPorGenero("M");
-            for(Profesor p : profesores){
+            // NativeQuery
+            System.out.println("PAIS NATIVE");
+            List<Profesor> profesoresPais = profesorService.buscarPorPaisNative("Ecuador");
+            for (Profesor p : profesoresPais) {
                 System.out.println(p);
             }
 
-            System.out.println("TYPED");
-            List<Profesor> profesoresTyped = profesorService.seleccionarPorGeneroTyped("M");
-            for(Profesor p : profesoresTyped){
+            System.out.println("ACTIVOS NATIVE");
+            List<Profesor> profesoresActivos = profesorService.buscarActivosNative();
+            for (Profesor p : profesoresActivos) {
                 System.out.println(p);
             }
 
-            System.out.println("PAIS");
-            List<Profesor> profesoresPais = profesorService.seleccionarPorPaisNamed("Ecuador");
-            for(Profesor p : profesoresPais){
+            System.out.println("ESPECIALIDAD NATIVE");
+            List<Profesor> profesoresEspecialidad = profesorService.buscarPorEspecialidadNative("Arquitectura");
+            for (Profesor p : profesoresEspecialidad) {
                 System.out.println(p);
             }
-
-            System.out.println("CONTAR");
-            Long total = profesorService.contar();
-            System.out.println("Total profesores: " + total);
-
 
 
 

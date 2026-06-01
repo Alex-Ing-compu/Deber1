@@ -30,8 +30,7 @@ public class ProfesorService {
         this.profesorRepository.eliminar(id);
     }
 
-
-    //metodos del profesor 
+    // metodos del profesor
 
     // 1. Seleccionar todos los profesores
     public List<Profesor> buscarTodos() {
@@ -73,22 +72,34 @@ public class ProfesorService {
         return this.profesorRepository.seleccionarPorDominioCorreo(dominio);
     }
 
-
-    //NamedQuery
-    public List<Profesor> seleccionarPorGenero(String genero){
+    // NamedQuery
+    public List<Profesor> seleccionarPorGenero(String genero) {
         return this.profesorRepository.seleccionarPorGenero(genero);
     }
 
-    public List<Profesor> seleccionarPorGeneroTyped(String genero){
+    public List<Profesor> seleccionarPorGeneroTyped(String genero) {
         return this.profesorRepository.seleccionarPorGeneroTyped(genero);
     }
 
-    public List<Profesor> seleccionarPorPaisNamed(String pais){
+    public List<Profesor> seleccionarPorPaisNamed(String pais) {
         return this.profesorRepository.seleccionarPorPaisNamed(pais);
     }
 
-    public Long contar(){
+    public Long contar() {
         return this.profesorRepository.contar();
+    }
+
+    // NativeQuery
+    public List<Profesor> buscarPorPaisNative(String pais) {
+        return this.profesorRepository.seleccionarPorPaisNative(pais);
+    }
+
+    public List<Profesor> buscarActivosNative() {
+        return this.profesorRepository.seleccionarActivosNative();
+    }
+
+    public List<Profesor> buscarPorEspecialidadNative(String especialidad) {
+        return this.profesorRepository.seleccionarPorEspecialidadNative(especialidad);
     }
 
 }
