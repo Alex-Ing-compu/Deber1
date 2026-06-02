@@ -1,6 +1,7 @@
 package ec.edu.uce.infrastructure.repository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import ec.edu.uce.damain.model.Estudiante;
@@ -10,6 +11,10 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -108,9 +113,75 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
       return myQuery.getResultList();
     }
  
+    //Criteria API Query
+    //Permite crear metodos dinamicos a partir de APIS provistas por criteria Query
+    //Voy a crear mi sentencia a partir 
+    // Este SQL se crea de fiora programtica usando metodos clases sin sentencias sql
+
+    @Override
+    public List<Estudiante> seleccionarTodosCriteria() {
+        //crear una instancia de la clase que va ser la encargada de esta contruccion: CriteriaBuikder
+        //construccion 
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        //definimos el tipo de objeto que va ha retornar mi consulta
+        CriteriaQuery<Estudiante> miQuery = cb.createQuery(Estudiante.class);
+
+        //Se define las entidades del FROM, en la clase root
+        Root<Estudiante> root = miQuery.from(Estudiante.class);
+
+        //Defino con que tipo de SQL voy a trabajar : SELECT
+        miQuery.select(root);
+
+        //Hasta aqui teminamos de contruir mi Query
+
+        //miQuery lo Transformo a un query ejecutable
+        TypedQuery<Estudiante> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+
+  }
     
+   @Override
+    public List<Estudiante> seleccionarTodosCriteriaNombre(String nombre) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> miQuery = cb.createQuery(Estudiante.class);
+        Root<Estudiante> root = miQuery.from(Estudiante.class); 
+
+        //Que voy a comparar
+        //Contra que voy a comparar
+        Predicate p1 = cb.equal(root.get("nombre"), nombre);
+        //predicado:condiciones que van dentro de mi WHERE
+        miQuery.select(root).where(p1);
+
+        TypedQuery<Estudiante> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+
+  }
+
+    @Override
+    public List<Estudiante> seleccionarDinamicoCriteria(String nombre, String apellido) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> miQuery = cb.createQuery(Estudiante.class);
+        Root<Estudiante> root = miQuery.from(Estudiante.class); 
 
 
+        List<Predicate> condiciones = new ArrayList<>();
+
+        if(nombre != null){
+            Predicate p1 = cb.equal(root.get("nombre"), nombre);
+            condiciones.add(p1);
+        }
+
+        if(apellido != null){
+            Predicate p2 = cb.equal(root.get("apellido"), apellido);
+            condiciones.add(p2);
+        }
+
+        miQuery.select(root).where(condiciones);
+        TypedQuery<Estudiante> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+
+    }
 
 
     

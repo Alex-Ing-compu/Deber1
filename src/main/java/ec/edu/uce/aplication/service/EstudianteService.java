@@ -73,4 +73,18 @@ public class EstudianteService {
     public List<Estudiante> seleccionarTodosNative(){
         return this.estudianteRepository.seleccionarTodosNative();
     }
+
+    //Criteria Api query
+    public List<Estudiante> seleccionarTodosCriteria(){
+        return this.estudianteRepository.seleccionarTodosCriteria();
+    }
+
+    public List<Estudiante> seleccionarTodosCriteriaNombre(String nombre){
+        return this.estudianteRepository.seleccionarTodosCriteriaNombre(nombre);
+    }
+
+    public List<Estudiante> seleccionarDinamicoCriteria(String nombre, String apellido){
+        return this.estudianteRepository.seleccionarDinamicoCriteria(nombre, apellido);
+    }
+
 }
