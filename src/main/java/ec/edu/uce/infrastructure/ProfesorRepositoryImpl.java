@@ -1,6 +1,7 @@
 package ec.edu.uce.infrastructure;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import ec.edu.uce.damain.model.Profesor;
@@ -10,6 +11,10 @@ import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -161,6 +166,63 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
         Query myQuery = this.em.createNativeQuery("SELECT * FROM profesor WHERE prof_especialidad = ?", Profesor.class);
         myQuery.setParameter(1, especialidad);
         return myQuery.getResultList();
+    }
+
+    //CRITERIA QUERY
+    @Override
+    public List<Profesor> seleccionarTodosCriteriaProfesor() {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Profesor> miQuery = cb.createQuery(Profesor.class);
+
+        Root<Profesor> root = miQuery.from(Profesor.class);
+
+        miQuery.select(root);
+
+        TypedQuery<Profesor> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorApellido(String apellido) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Profesor> miQuery = cb.createQuery(Profesor.class);
+
+        Root<Profesor> root = miQuery.from(Profesor.class);
+
+        Predicate p1 = cb.equal(root.get("apellido"), apellido);
+
+        miQuery.select(root).where(p1);
+
+        TypedQuery<Profesor> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarDinamicoCriteria(String apellido, String especialidad) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Profesor> miQuery = cb.createQuery(Profesor.class);
+
+        Root<Profesor> root = miQuery.from(Profesor.class);
+
+        List<Predicate> condiciones = new ArrayList<>();
+        if(apellido != null){
+            Predicate p1 = cb.equal(root.get("apellido"), apellido);
+            condiciones.add(p1);
+        }
+
+        if(especialidad != null){
+            Predicate p2 = cb.equal(root.get("especialidad"), especialidad);
+            condiciones.add(p2);
+        }
+
+        miQuery.select(root).where(condiciones);
+        TypedQuery<Profesor> query = this.em.createQuery(miQuery);
+        return query.getResultList();
+
     }
 
 }

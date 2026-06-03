@@ -44,4 +44,10 @@ public interface ProfesorRepository {
     List<Profesor> seleccionarPorEspecialidadNative(String especialidad);
 
 
+    //CRITERIAN QUERY
+    public List<Profesor> seleccionarTodosCriteriaProfesor();
+    public List<Profesor> seleccionarPorApellido(String apellido);
+    public List<Profesor> seleccionarDinamicoCriteria(String apellido, String especialidad);
+
+
 }

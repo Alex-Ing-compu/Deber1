@@ -102,4 +102,18 @@ public class ProfesorService {
         return this.profesorRepository.seleccionarPorEspecialidadNative(especialidad);
     }
 
+    //CITERIAQUERY
+    public List<Profesor> seleccionarTodosCriteriaProfesores(){
+        return  this.profesorRepository.seleccionarTodosCriteriaProfesor();
+    }
+
+    public List<Profesor> seleccionarPorApellido(String apellido){
+        return this.profesorRepository.seleccionarPorApellido(apellido);
+    }
+
+    public List<Profesor> seleccionarDinamicoCriteria(String apellido, String especialidad){
+        return this.profesorRepository.seleccionarDinamicoCriteria(apellido, especialidad);
+    }
+
+
 }
