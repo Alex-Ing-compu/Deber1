@@ -25,7 +25,7 @@ public class EstudianteService {
     public Estudiante buscarPorId(Integer id) {
         return this.estudianteRepository.seleccionarPorId(id);
     }
-
+    
     // ACTUALIZAR
     @Transactional
     public void actualizar(Estudiante estudiante) {
