@@ -2,6 +2,7 @@ package ec.edu.uce.damain.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +31,9 @@ public class Empleado {
     private LocalDateTime fechaIngreso;
 
 
+
     //en la entidad secudaria declaramos la entidad ciudadano
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL) //caundo va insertar va insetar en cascada esa relacion
     @JoinColumn(name="empl_cuidadano")
     private Ciudadano cuidadano;
 
