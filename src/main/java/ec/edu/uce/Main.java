@@ -11,6 +11,8 @@ import ec.edu.uce.aplication.service.OficinaService;
 import ec.edu.uce.aplication.service.ProfesorService;
 import ec.edu.uce.damain.model.Ciudadano;
 import ec.edu.uce.damain.model.Empleado;
+import ec.edu.uce.damain.model.Oficina;
+import ec.edu.uce.damain.model.Profesor;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -44,46 +46,26 @@ public class Main {
 
             System.out.println("Conexion a la base de datos POSTGRESQL!!");
 
-            // ciudadano
-            System.out.println("Crear Ciudadano");
+            // Tarea 12
+            System.out.println("TAREA 12");
+            Profesor p = new Profesor();
+            p.setNombre("Acely");
+            p.setApellido("Perez");
+            p.setEspecialidad("Arquitectura");
+            p.setCorreo("acely@uce.edu.ec");
+            p.setCiudad("Quito");
+            p.setPais("Ecuador");
+            p.setGenero("F");
+            p.setEstado(true);
+            p.setSalario(120.00);
 
-            // Creacion de un nuevo Estudiante
-            Ciudadano ciudadano = new Ciudadano();
-            ciudadano.setNombre("Jhon");
-            LocalDate date = LocalDate.of(2000, 5, 10);
-            LocalTime time = LocalTime.of(8, 30);
-            ciudadano.setFechaNacimiento(LocalDateTime.of(date, time));
-            // ciudadanoService.guardar(ciudadano);
+            Oficina o = new Oficina();
+            o.setNumero(111);
+            o.setBloque("A2");
 
+            o.setProfesor(p);
 
-            System.out.println("Creando empleado");
-            Empleado empleado = new Empleado();
-            empleado.setSalario(1500.00);
-            empleado.setFechaIngreso(LocalDateTime.now());
-            //empleado.setCuidadano(ciudadano);
-            //this.empleadoService.guardar(empleado);
-
-
-
-
-            //CIUDADANO 2 ---------------
-            System.out.println("-------------CIUDADANO 2 ---------------");
-
-            Ciudadano ciudadano2 = new Ciudadano();
-            ciudadano2.setNombre("Nuevooo");
-            LocalDate date2 = LocalDate.of(2005, 6, 5);
-            LocalTime time2 = LocalTime.of(7, 30);
-            ciudadano2.setFechaNacimiento(LocalDateTime.of(date2, time2));
-            this.ciudadanoService.guardar(ciudadano2);
-            
-           // System.out.println(ciudadano2.getId());
-            System.out.println("Creando empleado2");
-
-            Empleado empleado2 = new Empleado();
-            empleado2.setSalario(null);
-            empleado2.setFechaIngreso(LocalDateTime.now());
-            this.empleadoService.guardar(empleado2);
-
+            this.oficinaService.crear(o);
 
             return 0;
         }

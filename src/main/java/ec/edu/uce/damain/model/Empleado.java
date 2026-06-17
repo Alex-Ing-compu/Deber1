@@ -34,7 +34,7 @@ public class Empleado {
 
     //en la entidad secudaria declaramos la entidad ciudadano
     @OneToOne(cascade=CascadeType.ALL) //caundo va insertar va insetar en cascada esa relacion
-    @JoinColumn(name="empl_cuidadano")
+    @JoinColumn(name="empl_ciudadano")
     private Ciudadano cuidadano;
 
 

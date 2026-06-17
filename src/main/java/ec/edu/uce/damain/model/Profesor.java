@@ -105,7 +105,6 @@ public class Profesor {
     }
 
 
-
     public String getCiudad() {
         return ciudad;
     }

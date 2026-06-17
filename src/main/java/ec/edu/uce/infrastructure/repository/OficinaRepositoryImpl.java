@@ -18,5 +18,6 @@ public class OficinaRepositoryImpl implements OficinaRepository{
     public void crear(Oficina oficina) {
         this.em.persist(oficina);
     }
+    
 
 }

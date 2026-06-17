@@ -1,5 +1,6 @@
 package ec.edu.uce.damain.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +28,9 @@ public class Oficina {
     @Column(name="ofi_bloque")
     private String bloque;
 
-    @OneToOne
+
+    //Transacciones 
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="ofi_profesor")
     private Profesor profesor;
 
