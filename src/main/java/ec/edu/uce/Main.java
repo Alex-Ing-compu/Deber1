@@ -31,18 +31,18 @@ public class Main {
 
             //RALACION ONE TO MANY
             Cliente c = new Cliente();
-            c.setNombre("Alex");
+            c.setNombre("Paul");
             c.setCedula("110285636");
 
             Pedido p = new Pedido();
             p.setTotal(Double.valueOf(10));
             p.setCliente(c);
-            p.setFecha(LocalDate.of(2026, 06, 17));
+            p.setFecha(LocalDate.of(2026, 06, 25));
 
             Pedido p2 = new Pedido();
             p2.setTotal(Double.valueOf(200));
             p2.setCliente(c);
-            p2.setFecha(LocalDate.of(2026, 06, 5));
+            p2.setFecha(LocalDate.of(2026, 06, 6));
 
             List<Pedido> pedidos = new ArrayList<>();
             pedidos.add(p);

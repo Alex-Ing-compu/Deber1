@@ -28,7 +28,7 @@ public class Pedido {
 
 
 
-    @ManyToOne()
+    @ManyToOne
     private Cliente cliente; //con esta parte 
 
 
