@@ -1,41 +1,19 @@
 package ec.edu.uce.damain.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="profesor")
-
-//NameQuery
-@NamedQueries({
-    @NamedQuery(
-        name="Profesor.buscarPorGenero",
-        query="SELECT p FROM Profesor p WHERE p.genero = :genero"
-    ),
-
-    @NamedQuery(
-        name="Profesor.buscarPorApellido",
-        query="SELECT p FROM Profesor p WHERE p.apellido = :apellido"
-    ),
-
-    @NamedQuery(
-        name="Profesor.buscarPorPais",
-        query="SELECT p FROM Profesor p WHERE p.pais = :pais"
-    ),
-
-    @NamedQuery(
-        name="Profesor.contar",
-        query="SELECT COUNT(p) FROM Profesor p"
-    )
-
-})
 
 public class Profesor {
 
@@ -57,7 +35,6 @@ public class Profesor {
 
     @Column(name="prof_correo")
     private String correo;
-
     
     @Column(name="prof_cuidad")
     private String ciudad;
@@ -72,6 +49,17 @@ public class Profesor {
     private Double salario; 
     
 
+    //Uno a muchos 
+    @OneToMany(mappedBy="profesor" , cascade=CascadeType.ALL)//hace el mapeo con la variable creada en pedido
+    private List<Horario> horario;
+
+
+    public List<Horario> getHorario() {
+        return horario;
+    }
+    public void setHorario(List<Horario> horario) {
+        this.horario = horario;
+    }
     //getter and setters
     public Integer getId() {
         return id;

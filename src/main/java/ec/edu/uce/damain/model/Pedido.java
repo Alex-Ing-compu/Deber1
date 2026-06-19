@@ -27,11 +27,9 @@ public class Pedido {
     private LocalDate fecha;    
 
 
-
     @ManyToOne
-    private Cliente cliente; //con esta parte 
-
-
+    private Cliente cliente; //con esta parte (mapper by = ".....")
+                             //esto va el la entidad cliente
 
     //GET Y SET
     public Integer getId() {

@@ -1,7 +1,5 @@
 package ec.edu.uce.damain.model;
 
-import org.hibernate.annotations.ManyToAny;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,8 +24,6 @@ public class Materia {
     @Column(name="mate_numero_creditos")
     private Integer numeroCreditos;
 
-    @ManyToAny
-    private Alumno alumno;
 
     //GET Y SET
 

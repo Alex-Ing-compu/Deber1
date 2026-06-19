@@ -30,6 +30,7 @@ public class Cliente {
 
     //UNO A MUCHOS 
     @OneToMany(mappedBy="cliente" , cascade=CascadeType.ALL)//hace el mapeo con la variable creada en pedido
+    // por lo cual debe estar escrito en mappedby igual que en la clase pedido "cliente" .."clientes"
     private List<Pedido> pedido;
 
     //GET Y SET

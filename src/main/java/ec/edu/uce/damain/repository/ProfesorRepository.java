@@ -7,6 +7,7 @@ import ec.edu.uce.damain.model.Profesor;
 
 public interface ProfesorRepository {
 
+    //metodo crear - para el one to many
     void crear(Profesor profesor);
 
     Profesor seleccionarPorId(Integer id);

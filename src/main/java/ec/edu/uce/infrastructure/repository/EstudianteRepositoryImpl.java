@@ -26,6 +26,7 @@ public class EstudianteRepositoryImpl implements EstudianteRepository{
     @Inject
     private EntityManager em;
 
+    //one to many
     @Override
     public void crear(Estudiante estudiante) {
         this.em.persist(estudiante);
