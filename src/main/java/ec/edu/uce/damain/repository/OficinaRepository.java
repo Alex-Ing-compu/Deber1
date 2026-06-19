@@ -1,9 +1,9 @@
-package ec.edu.uce.damain.repository;
+    package ec.edu.uce.damain.repository;
 
-import ec.edu.uce.damain.model.Oficina;
+    import ec.edu.uce.damain.model.Oficina;
 
-public interface OficinaRepository {
+    public interface OficinaRepository {
 
-    public void crear(Oficina oficina);
-    
-}
+        public void crear(Oficina oficina);
+        
+    }

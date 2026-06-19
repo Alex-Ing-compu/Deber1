@@ -12,12 +12,23 @@ public class ProfesorService {
     @Inject
     private ProfesorRepository profesorRepository;
 
+    /*
     //one to many
     @Transactional
     public void guardar(Profesor profesor) {
         this.profesorRepository.crear(profesor);
     }
+    */    
 
+    //many to many
+    @Transactional
+    public void guardar(Profesor profesor) {
+        this.profesorRepository.crear(profesor);
+    }
+
+
+    
+    
 /*
 
     public Profesor buscarPorId(Integer id) {

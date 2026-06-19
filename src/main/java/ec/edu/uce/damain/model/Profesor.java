@@ -2,13 +2,14 @@ package ec.edu.uce.damain.model;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -48,7 +49,7 @@ public class Profesor {
     @Column(name="prof_salario")
     private Double salario; 
     
-
+    /*
     //Uno a muchos 
     @OneToMany(mappedBy="profesor" , cascade=CascadeType.ALL)//hace el mapeo con la variable creada en pedido
     private List<Horario> horario;
@@ -60,6 +61,15 @@ public class Profesor {
     public void setHorario(List<Horario> horario) {
         this.horario = horario;
     }
+
+    */
+
+    //MUHCOS A MUCHOS
+    @ManyToMany
+    @JoinTable(name="profesor_proyecto", joinColumns=@JoinColumn(name="prpr_id_profesor"),inverseJoinColumns=@JoinColumn(name="prpr_id_proyecto"))//tabla  de rompimiento
+    private List<Proyecto> proyecto;
+
+
     //getter and setters
     public Integer getId() {
         return id;
@@ -132,6 +142,14 @@ public class Profesor {
         return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", especialidad=" + especialidad
                 + ", correo=" + correo + ", ciudad=" + ciudad + ", pais=" + pais + ", genero=" + genero + ", estado="
                 + estado + ", salario=" + salario + "]";
+    }
+
+    public List<Proyecto> getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(List<Proyecto> proyecto) {
+        this.proyecto = proyecto;
     }
 
 

@@ -24,6 +24,14 @@ public class ProfesorRepositoryImpl implements ProfesorRepository {
     @Inject
     private EntityManager em;
 
+    /* one to many
+    @Override
+    public void crear(Profesor profesor) {
+        this.em.persist(profesor);
+    }
+    */
+
+    //many to many
     @Override
     public void crear(Profesor profesor) {
         this.em.persist(profesor);

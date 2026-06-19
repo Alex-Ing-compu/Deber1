@@ -5,8 +5,9 @@ import java.util.List;
 
 import ec.edu.uce.aplication.service.ClienteService;
 import ec.edu.uce.aplication.service.ProfesorService;
-import ec.edu.uce.damain.model.Horario;
+import ec.edu.uce.aplication.service.ProyectoService;
 import ec.edu.uce.damain.model.Profesor;
+import ec.edu.uce.damain.model.Proyecto;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -27,49 +28,50 @@ public class Main {
         @Inject
         private ProfesorService profesorService;
 
+        @Inject
+        private ProyectoService proyectoService;
+        
+
         @Override
         public int run(String... args) throws Exception {
 
             System.out.println("Conexion a la base de datos POSTGRESQL!!");
 
-            //DEBER: ONE TO MANY
+            //DEBER: ManyToMany
+
             Profesor profesor = new Profesor();
-            profesor.setNombre("Alex");
+            profesor.setNombre("Jhon");
             profesor.setApellido("Cordova");
             profesor.setCiudad("Quito");
-            profesor.setCorreo("ale@uce.edu.ec");
+            profesor.setCorreo("jhon@uce.edu.ec");
             profesor.setEspecialidad("Sistemas");
             profesor.setEstado(true);
             profesor.setPais("Ecuador");
             profesor.setGenero("M");
             profesor.setSalario(2000.0);
             
+            Proyecto proyecto = new Proyecto();
+            proyecto.setNombre("AppFord");
+            proyecto.setDescripcion("Aplicacion movil para mirar las ventas de carros");
+            proyecto.setMonto(300.0);
+
+            Proyecto proyecto2 = new Proyecto();
+            proyecto2.setNombre("Things");
+            proyecto2.setDescripcion("Aplicacion de escritorio para escuchar canciones");
+            proyecto2.setMonto(500.0);
             
-            Horario horario = new Horario();
-            horario.setDia("Jueves");
-            horario.setHora("6:00 am");
-            horario.setProfesor(profesor);
-            
-            Horario horario2 = new Horario();
-            horario2.setDia("Martes");
-            horario2.setHora("10:00 am");
-            horario2.setProfesor(profesor);
+            this.proyectoService.guardar(proyecto);
+            this.proyectoService.guardar(proyecto2);
 
-            Horario horario3 = new Horario();
-            horario3.setDia("Viernes");
-            horario3.setHora("11:00 am");
-            horario3.setProfesor(profesor);
+            List<Proyecto> proyectos = new ArrayList<>();
+            proyectos.add(proyecto);
+            proyectos.add(proyecto2);
+
+            profesor.setProyecto(proyectos);
+
+            this.profesorService.guardar(profesor);
 
 
-            List<Horario> horarios = new ArrayList<>();
-            horarios.add(horario);
-            horarios.add(horario2);
-            horarios.add(horario3);
-            
-
-            profesor.setHorario(horarios);
-
-            this.profesorService.guardar(profesor); 
 
             /*
             //RALACION ONE TO MANY
