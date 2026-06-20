@@ -6,4 +6,5 @@ public interface AlumnoRepository {
 
     public void crear(Alumno alumno);
 
+    public Alumno consultarAlumnoPorID(Integer nombre);
 }

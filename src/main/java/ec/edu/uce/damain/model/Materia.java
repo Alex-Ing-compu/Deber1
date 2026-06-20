@@ -1,14 +1,19 @@
 package ec.edu.uce.damain.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
-@Table(name="materia")
+@Table(name = "materia")
 @Entity
 public class Materia {
 
@@ -16,16 +21,17 @@ public class Materia {
     @SequenceGenerator(name = "seq_materia_generador", sequenceName = "seq_materia", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_materia_generador")
 
-
-    @Column(name="mate_id")
+    @Column(name = "mate_id")
     private Integer id;
-    @Column(name="mate_nombre")
+    @Column(name = "mate_nombre")
     private String nombre;
-    @Column(name="mate_numero_creditos")
+    @Column(name = "mate_numero_creditos")
     private Integer numeroCreditos;
 
+    @ManyToMany(mappedBy = "materias", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    private List<Alumno> alumnos;
 
-    //GET Y SET
+    // GET Y SET
 
     public Integer getId() {
         return id;
@@ -50,5 +56,22 @@ public class Materia {
     public void setNumeroCreditos(Integer numeroCreditos) {
         this.numeroCreditos = numeroCreditos;
     }
+
+    public List<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Materia [id=" + id + ", nombre=" + nombre + ", numeroCreditos=" + numeroCreditos + "]";
+    }
+    
+    
+    
 
 }

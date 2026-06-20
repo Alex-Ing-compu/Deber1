@@ -2,15 +2,16 @@ package ec.edu.uce.damain.model;
 
 import java.util.List;
 
-import org.hibernate.annotations.ManyToAny;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -29,10 +30,14 @@ public class Alumno {
     @Column(name="alum_nombre")
     private  String nombre;
 
-    @ManyToAny
-    @JoinTable(name="alumno_materia", joinColumns=@JoinColumn(name="alma_id_alumno"),inverseJoinColumns=@JoinColumn(name="alma_id_materia"))//tabla  de rompimiento
-    private List<Materia> matierias;
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="alumno_materia", 
+                joinColumns=@JoinColumn(name="alma_id_alumno"),
+                inverseJoinColumns=@JoinColumn(name="alma_id_materia"))//tabla  de rompimiento
+    private List<Materia> materias;
 
+    //jpa tienes dos tipos de mapeos 
+    //unidirecciononal y bidirecional 
 
     //GET Y SET
 
@@ -52,14 +57,21 @@ public class Alumno {
         this.nombre = nombre;
     }
 
-
-    public List<Materia> getMatierias() {
-        return matierias;
+    public List<Materia> getMaterias() {
+        return materias;
     }
 
-    public void setMatierias(List<Materia> matierias) {
-        this.matierias = matierias;
+    public void setMaterias(List<Materia> materias) {
+        this.materias = materias;
     }
+
+
+    @Override
+    public String toString() {
+        return "Alumno [id=" + id + ", nombre=" + nombre +  "]";
+    }
+
+    
 
 
     
