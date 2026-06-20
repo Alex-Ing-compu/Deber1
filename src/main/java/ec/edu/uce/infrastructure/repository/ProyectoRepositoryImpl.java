@@ -19,4 +19,11 @@ public class ProyectoRepositoryImpl implements ProyectoRepository{
         this.em.persist(proyecto);
     }
 
+    @Override
+    public Proyecto consultarProyectoPorID(Integer id) {
+        return this.em.find(Proyecto.class, id);
+    }
+
+   
+
 }

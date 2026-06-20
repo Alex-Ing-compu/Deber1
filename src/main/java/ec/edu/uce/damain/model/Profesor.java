@@ -2,8 +2,10 @@ package ec.edu.uce.damain.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -65,7 +67,7 @@ public class Profesor {
     */
 
     //MUHCOS A MUCHOS
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinTable(name="profesor_proyecto", joinColumns=@JoinColumn(name="prpr_id_profesor"),inverseJoinColumns=@JoinColumn(name="prpr_id_proyecto"))//tabla  de rompimiento
     private List<Proyecto> proyecto;
 

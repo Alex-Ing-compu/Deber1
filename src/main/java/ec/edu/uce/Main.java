@@ -2,8 +2,10 @@ package ec.edu.uce;
 
 import ec.edu.uce.aplication.service.AlumnoService;
 import ec.edu.uce.aplication.service.MateriaService;
-import ec.edu.uce.damain.model.Alumno;
-import ec.edu.uce.damain.model.Materia;
+import ec.edu.uce.aplication.service.ProfesorService;
+import ec.edu.uce.aplication.service.ProyectoService;
+import ec.edu.uce.damain.model.Profesor;
+import ec.edu.uce.damain.model.Proyecto;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -17,6 +19,11 @@ public class Main {
 
     public static class App implements QuarkusApplication {
 
+        @Inject
+        private ProfesorService profesorService;
+
+        @Inject
+        private ProyectoService proyectoService;
 
         @Inject
         private AlumnoService alumnoService;
@@ -29,77 +36,100 @@ public class Main {
         public int run(String... args) throws Exception {
 
             System.out.println("Conexion a la base de datos POSTGRESQL!!");
-
             /*
-            Alumno a1 = new Alumno();
-            a1.setNombre("Jhon");
+            Profesor p1 = new Profesor();
+            p1.setNombre("Mateo");
+            p1.setApellido("Andrade");
+            p1.setCiudad("Quito");
+            p1.setCorreo("mateo@uce.edu.ec");
+            p1.setEspecialidad("Sistemas");
+            p1.setEstado(true);
+            p1.setPais("Ecuador");
+            p1.setGenero("M");
+            p1.setSalario(2000.0);
 
-            Materia m1 = new Materia();
-            m1.setNombre("P.Avanzada");
-            m1.setNumeroCreditos(4);
+            Proyecto pr1 = new Proyecto();
+            pr1.setNombre("AppFord");
+            pr1.setDescripcion("Aplicacion movil para mirar las ventas de carros");
+            pr1.setMonto(300.0);
+
+            Proyecto pr2 = new Proyecto();
+            pr2.setDescripcion("Aplicacion movil para mirar las ventas de carros");
+            pr2.setDescripcion("Aplicacion movil para mirar las ventas de carros");
+            pr2.setMonto(300.0);
+
             
-            Materia m2 = new Materia();
-            m2.setNombre("P.Web");
-            m2.setNumeroCreditos(6);
 
-            List<Materia> listaMaterias = new ArrayList<>();
-            listaMaterias.add(m1);
-            listaMaterias.add(m2);
+            List<Proyecto> listaProyecto = new ArrayList<>();
+            listaProyecto.add(pr1);
+            listaProyecto.add(pr2);
 
-            a1.setMaterias(listaMaterias);
-            this.alumnoService.crear(a1);
+            p1.setProyecto(listaProyecto);
+            this.profesorService.guardar(p1);
             */
-
+        
             /*
-            Materia m3 = new Materia();
-            m3.setNombre("P.Distribuida");
-            m3.setNumeroCreditos(6);
+            Proyecto pr3 = new Proyecto();
+            pr3.setNombre("MovieSork");
+            pr3.setDescripcion("App de peliculas gratis");
+            pr3.setMonto(800.0);
+
+            Profesor p2 = new Profesor();
+            p2.setNombre("Stalin");
+            p2.setApellido("Andrade");
+            p2.setCiudad("Quito");
+            p2.setCorreo("stalin@uce.edu.ec");
+            p2.setEspecialidad("Sistemas");
+            p2.setEstado(true);
+            p2.setPais("Ecuador");
+            p2.setGenero("M");
+            p2.setSalario(20440.0);
+
+            p2.setProyecto(List.of(pr3));
+
+            Profesor p3 = new Profesor();
+            p3.setNombre("Kenn");
+            p3.setApellido("Bailon");
+            p3.setCiudad("Quito");
+            p3.setCorreo("mateo@uce.edu.ec");
+            p3.setEspecialidad("Sistemas");
+            p3.setEstado(true);
+            p3.setPais("Ecuador");
+            p3.setGenero("M");
+            p3.setSalario(120.0);
+
+            p3.setProyecto(List.of(pr3));
 
 
-            Alumno a2 = new Alumno();
-            a2.setNombre("Alex");
-            a2.setMaterias(List.of(m3));
+            List<Profesor> profesores = new ArrayList<>();
+            profesores.add(p2);
+            profesores.add(p3);
 
-            Alumno a3 = new Alumno();
-            a3.setNombre("Paul");
-            a3.setMaterias(List.of(m3));    
+            pr3.setProfesor(profesores);
 
-            List<Alumno> alumnos = new ArrayList<>();
-            alumnos.add(a2);
-            alumnos.add(a3);
-
-            m3.setAlumnos(alumnos);
-
-            this.materiaService.crear(m3);
+            this.profesorService.guardar(p3);
             */
 
-            //crear una consulta una materia por su id
+            System.out.println("Consultando el proyecto por ID:");
+            Proyecto proyec = proyectoService.consultarProyectoPorId(3);
+            System.out.println(proyec);
 
-           System.out.println("Materias");
-            Materia m = materiaService.consultarPorID(4);
-            System.out.println(m);
- 
-            // Imprimir los alumnos de esa materia
- 
-            System.out.println("Alumnos de esa materia");
- 
-            for (Alumno p : m.getAlumnos()) {
+
+            System.out.println("Profesores de ese proyecto");
+
+            for (Profesor p : proyec.getProfesor()) {
                 System.out.println(p);
             }
- 
-            //alumno por id query, imprimir todas la materias del alumno
-            System.out.println("Alumno");
-            Alumno a = alumnoService.consultarPorID(4);
-            System.out.println(a);
- 
-            System.out.println("Materias del Alumno");
-            for(Materia m1: a.getMaterias()){
-                System.out.println(m1);
- 
+
+            
+            System.out.println("Consultando el Profesor por ID");
+            Profesor profesor = profesorService.consultarProfesorPorId(3);
+            System.out.println(profesor);
+
+            System.out.println("Proyectos del Profesor");
+            for(Proyecto e: profesor.getProyecto()){
+                System.out.println(e);
             }
-
-
-            //impirmir los alumnos que estan en esa materia 
 
             return 0;
         }

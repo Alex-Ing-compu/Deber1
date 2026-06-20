@@ -2,8 +2,10 @@ package ec.edu.uce.damain.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -29,9 +31,9 @@ public class Proyecto {
     private Double monto;
 
     //many to many
-    @ManyToMany(mappedBy="proyecto")
+    @ManyToMany(mappedBy="proyecto", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Profesor> profesor;
-
+    
 
     //get y set
     public Integer getId() {
@@ -72,6 +74,19 @@ public class Proyecto {
 
     public void setProfesor(List<Profesor> profesor) {
         this.profesor = profesor;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Proyecto{");
+        sb.append("id=").append(id);
+        sb.append(", nombre=").append(nombre);
+        sb.append(", descripcion=").append(descripcion);
+        sb.append(", monto=").append(monto);
+        sb.append(", profesor=").append(profesor);
+        sb.append('}');
+        return sb.toString();
     }
 
 

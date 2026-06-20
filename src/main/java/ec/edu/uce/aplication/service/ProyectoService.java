@@ -16,5 +16,9 @@ public class ProyectoService {
     public void guardar(Proyecto proyecto) {
         this.proyectoRepository.crear(proyecto);
     }
+
+    public Proyecto consultarProyectoPorId(Integer id){
+        return this.proyectoRepository.consultarProyectoPorID(id);
+    }
     
 }
