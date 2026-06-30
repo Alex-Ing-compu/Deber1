@@ -10,8 +10,6 @@ import uce.edu.ec.aplication.service.FacturaService;
 import uce.edu.ec.aplication.service.MailService;
 import uce.edu.ec.aplication.service.ReporteService;
 import uce.edu.ec.domain.model.Factura;
-import uce.edu.ec.domain.model.Mail;
-import uce.edu.ec.domain.model.Reporte;
 
 @QuarkusMain
 public class Main {
@@ -21,7 +19,7 @@ public class Main {
     }
  
     public static class App implements QuarkusApplication {
- 
+
         @Inject
         private FacturaService fs;
 
@@ -34,6 +32,25 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
  
+        
+        String nombreHilo= Thread.currentThread().getName();
+        System.out.println("nombre el hilo ReporteService" + nombreHilo);
+        System.out.println("ID:" + Thread.currentThread().threadId());
+
+        System.out.println("--- Iniciando Prueba con Interceptores ---"); 
+
+        System.out.println("Prueba");
+        Factura factura = new Factura();
+        factura.setFecha(LocalDate.now());
+        factura.setNumero("0001-0004");
+        factura.setRuc("23483854321564");
+
+        fs.guardar(factura);
+
+        Factura fac =fs.buscarPorId(1);
+        System.out.println(fac.toString());
+
+        /* 
             System.out.println("Conexión a la base de datos POSTGRES!");
 
             Factura f1 = new Factura();
@@ -42,8 +59,7 @@ public class Main {
             f1.setRuc("1727555789");
  
            // fs.guardar(f1);
-
- 
+            
             //Factura f = fs.buscarPorId(1);
             //System.out.println(f);
 
@@ -74,6 +90,7 @@ public class Main {
             Reporte r = this.rs.buscarPorAutor("ale@uce.edu.ec");
             System.out.println(r);
 
+            */
  
             return 0;
         }

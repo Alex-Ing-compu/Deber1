@@ -27,6 +27,17 @@ public class Reporte extends PanacheEntityBase {
     private String autor;
     @Column(name = "repor_tipo")
     private String tipo;
+    @Column(name = "repor_descripcion")
+    private String descripcion;
+    
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     @Column(name = "repor_fecha_generacion")
     private LocalDate fechaGeneracion;
 
