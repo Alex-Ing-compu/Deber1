@@ -19,29 +19,20 @@ public class Reporte extends PanacheEntityBase {
     @SequenceGenerator(name = "seq_reporte_generador", sequenceName = "seq_reporte", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_reporte_generador")
 
-    @Column(name = "repor_id")
+   @Column(name = "repor_id")
     private Integer id;
+
     @Column(name = "repor_titulo")
     private String titulo;
-    @Column(name = "repor_autor")
-    private String autor;
-    @Column(name = "repor_tipo")
-    private String tipo;
+
     @Column(name = "repor_descripcion")
     private String descripcion;
-    
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+    @Column(name = "repor_fecha")
+    private LocalDate fecha;
 
-    @Column(name = "repor_fecha_generacion")
-    private LocalDate fechaGeneracion;
-
-    //getters y setters
+    @Column(name = "repor_formato")
+    private String formato;
 
     public Integer getId() {
         return id;
@@ -59,34 +50,35 @@ public class Reporte extends PanacheEntityBase {
         this.titulo = titulo;
     }
 
-    public String getAutor() {
-        return autor;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getTipo() {
-        return tipo;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public LocalDate getFechaGeneracion() {
-        return fechaGeneracion;
+    public String getFormato() {
+        return formato;
     }
 
-    public void setFechaGeneracion(LocalDate fechaGeneracion) {
-        this.fechaGeneracion = fechaGeneracion;
+    public void setFormato(String formato) {
+        this.formato = formato;
     }
 
     @Override
     public String toString() {
-        return "Reporte [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", tipo=" + tipo
-                + ", fechaGeneracion=" + fechaGeneracion + "]";
+        return "Reporte [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fecha=" + fecha
+                + ", formato=" + formato + "]";
     }
+
 
 }

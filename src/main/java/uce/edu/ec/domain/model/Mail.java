@@ -22,15 +22,18 @@ public class Mail extends PanacheEntityBase {
 
     @Column(name = "mail_id")
     private Integer id;
-    @Column(name = "mail_remitente")
-    private String remitente;
+
     @Column(name = "mail_destinatario")
     private String destinatario;
+
     @Column(name = "mail_asunto")
     private String asunto;
-    @Column(name = "mail_fecha_envio")
-    private LocalDate fechaEnvio;
 
+    @Column(name = "mail_mensaje")
+    private String mensaje;
+
+    @Column(name = "mail_fecha_envio")
+    private LocalDate fechaenvio;
 
     public Integer getId() {
         return id;
@@ -38,14 +41,6 @@ public class Mail extends PanacheEntityBase {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getRemitente() {
-        return remitente;
-    }
-
-    public void setRemitente(String remitente) {
-        this.remitente = remitente;
     }
 
     public String getDestinatario() {
@@ -64,20 +59,26 @@ public class Mail extends PanacheEntityBase {
         this.asunto = asunto;
     }
 
-    public LocalDate getFechaEnvio() {
-        return fechaEnvio;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setFechaEnvio(LocalDate fechaEnvio) {
-        this.fechaEnvio = fechaEnvio;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public LocalDate getFechaenvio() {
+        return fechaenvio;
+    }
+
+    public void setFechaenvio(LocalDate fechaenvio) {
+        this.fechaenvio = fechaenvio;
     }
 
     @Override
     public String toString() {
-        return "Mail [id=" + id + ", remitente=" + remitente + ", destinatario=" + destinatario + ", asunto=" + asunto
-                + ", fechaEnvio=" + fechaEnvio + "]";
+        return "Mail [id=" + id + ", destinatario=" + destinatario + ", asunto=" + asunto + ", mensaje=" + mensaje
+                + ", fechaenvio=" + fechaenvio + "]";
     }
-
-    
 
 }

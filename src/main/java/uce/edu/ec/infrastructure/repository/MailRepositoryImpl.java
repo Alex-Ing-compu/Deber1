@@ -10,9 +10,5 @@ import uce.edu.ec.domain.model.Mail;
 @Transactional
 public class MailRepositoryImpl implements PanacheRepositoryBase<Mail, Integer> {
     
-    public Mail buscarPorRemitente(String remitente){
-
-        return find("remitente = ?1", remitente).firstResult();
-    }
 
 }
