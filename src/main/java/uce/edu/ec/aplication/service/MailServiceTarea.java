@@ -1,8 +1,10 @@
 package uce.edu.ec.aplication.service;
 
+import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import uce.edu.ec.domain.model.Mail;
 
+@Dependent
 public class MailServiceTarea implements Runnable{
 
     @Inject
@@ -10,11 +12,9 @@ public class MailServiceTarea implements Runnable{
 
     private Mail mail;
 
-    public MailServiceTarea(Mail mail, MailService mailService){
+    public void setMail(Mail mail){
         this.mail = mail;
-        this.ms = mailService;
     }
-
 
     @Override
     //metodo que se va ejecutar en un hilo en especifico 

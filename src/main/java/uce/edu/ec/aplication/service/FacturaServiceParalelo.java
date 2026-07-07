@@ -1,8 +1,10 @@
 package uce.edu.ec.aplication.service;
 
 import java.time.LocalDate;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -26,9 +28,16 @@ public class FacturaServiceParalelo {
     @Inject
     private MailService ms;
 
+    @Inject
+    private ReporteServiceTarea rst;
+
+    @Inject
+    private MailServiceTarea mst;
+
+
 
     @MedirTiempo
-    public void guardar(Factura factura) {
+    public void guardar(Factura factura) throws  InterruptedException, ExecutionException{
 
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("Nombre del hilo FACTURASERVICEPARALELA:" + nombreHilo);
@@ -45,31 +54,42 @@ public class FacturaServiceParalelo {
         r.setFormato("PDF");
         r.setDescripcion("El siguiente reporte se da sobre las ventas obtenidas");
         r.setFecha(LocalDate.now());
-        ReporteServiceTarea reporteTarea = new ReporteServiceTarea(r,rs);
-        excecuteService.submit(reporteTarea);
-        //this.rs.guardarReporte(r);
 
+        this.rst.setReporte(r);
+
+        //ReporteServiceTarea reporteTarea = new ReporteServiceTarea(r);
+
+        
+        Future<?> reporteFuture = excecuteService.submit(rst);
+        //excecuteService.submit(reporteTarea);
+        //this.rs.guardarReporte(r);
 
 
         Mail m = new Mail();
         m.setAsunto("Factura");
         m.setDestinatario("jacordovat@uce.edu.es");
         m.setFechaenvio(LocalDate.now());
+
+        this.mst.setMail(m);
         
-        MailServiceTarea mailTarea = new MailServiceTarea(m, ms);
-        excecuteService.submit(mailTarea);
+        //MailServiceTarea mailTarea = new MailServiceTarea(m);
+
+        Future<?> mailFuture = excecuteService.submit(mst);
+        //excecuteService.submit(mailTarea);
         //this.ms.guardarMail(m);
+
+        //tiene que terminarse la tarea de reporte 
+        reporteFuture.get();
+
+        //tiene que terminarse la tarea de mail, mientras no termina no pasa  
+        mailFuture.get();
 
         //cerrar el proceso de ejecucion, indicando que no voy a enviar mas tareas.
         //debo crear una clase para cada tarea independiente 
+        //dejamos puesto esto para dehjar que se ejecute el reporte mail.
         excecuteService.shutdown();
 
-        try {
-            Thread.sleep(30000);
-        } catch (Exception e) {
-        }
-        
-        
+   
 
     }
 

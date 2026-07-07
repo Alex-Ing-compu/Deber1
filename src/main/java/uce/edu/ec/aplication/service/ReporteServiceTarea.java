@@ -1,18 +1,21 @@
 package uce.edu.ec.aplication.service;
 
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 import uce.edu.ec.domain.model.Reporte;
 
+@Dependent
 public class ReporteServiceTarea implements Runnable {
 
     private Reporte reporte;
 
-    //@Inject
-    private ReporteService rs;
-
-    public ReporteServiceTarea(Reporte reporte, ReporteService reporteService) {
-        this.reporte = reporte;
-        this.rs = reporteService;
+    public void setReporte(Reporte reporte){
+        
+         this.reporte = reporte;
     }
+    
+    @Inject
+    private ReporteService rs;
 
     @Override
     public void run() {

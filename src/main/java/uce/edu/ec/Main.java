@@ -7,6 +7,7 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 import uce.edu.ec.aplication.service.FacturaService;
+import uce.edu.ec.aplication.service.FacturaServiceCompletadoFuture;
 import uce.edu.ec.aplication.service.FacturaServiceParalelo;
 import uce.edu.ec.aplication.service.MatriculaService;
 import uce.edu.ec.domain.model.Factura;
@@ -28,7 +29,10 @@ public class Main {
 
         @Inject
         private FacturaServiceParalelo fsp;
- 
+        
+        @Inject
+        private FacturaServiceCompletadoFuture fsc;
+
         @Override
         public int run(String... args) throws Exception {
        
@@ -41,7 +45,7 @@ public class Main {
             f1.setNumero("0001-9999");
             f1.setRuc("1727556");
 
-            fsp.guardar(f1);
+            fsc.guardar(f1);
             
             
  
