@@ -1,5 +1,7 @@
 package uce.edu.ec.aplication.service;
 
+import java.util.List;
+
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import uce.edu.ec.domain.model.Reporte;
@@ -17,8 +19,21 @@ public class ReporteService {
         System.out.println("Nombre del hilo REPORTESERVICE:" + nombreHilo);
         System.out.println("ID: " + Thread.currentThread().threadId());
 
+        try{
+            Thread.sleep(3000);
+        } catch(Exception e){
+
+        }
+        
         reporte.persist();
 
+    }
+
+    @Auditar
+    public void guardarListaReporte(List<Reporte> lista){
+        for(Reporte p: lista){
+            this.guardarReporte(p);
+        }
     }
 
     public Reporte buscarReporteporId(Integer id) {

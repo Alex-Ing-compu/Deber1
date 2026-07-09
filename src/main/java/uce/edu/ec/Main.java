@@ -1,6 +1,7 @@
 package uce.edu.ec;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
@@ -12,7 +13,8 @@ import uce.edu.ec.aplication.service.FacturaService;
 import uce.edu.ec.aplication.service.FacturaServiceCompletadoFuture;
 import uce.edu.ec.aplication.service.FacturaServiceParalelo;
 import uce.edu.ec.aplication.service.MatriculaService;
-import uce.edu.ec.domain.model.Estudiante;
+import uce.edu.ec.aplication.service.ReporteService;
+import uce.edu.ec.domain.model.Reporte;
 
 @QuarkusMain
 public class Main {
@@ -41,27 +43,24 @@ public class Main {
         @Inject
         private AuditoriaService as;
 
+        @Inject
+        private ReporteService rs;
+
         @Override
         public int run(String... args) throws Exception {
         
         System.out.println("Conectado a la BASE DE DATOS");
-        Estudiante estu = new Estudiante();
-        estu.setNombre("Andyy");
-        estu.setApellido("Aguas");
-        estu.setFechaNacimineto(LocalDate.now());
-        estu.setGenero("M");
-        this.es.guardar(estu);
         
-        //actualizar
-        Estudiante estuAc = this.es.buscarPorId(3);
-        estuAc.setNombre("Ale_");
-        //this.es.actualizar(estuAc);
-        
-        //eliminar
-        Integer eliminar = 2;
-        //Estudiante estudiante = this.es.buscarPorId(eliminar);    
-        //this.es.eliminar(eliminar);
-        
+        List<Reporte> lista = new ArrayList<>();
+
+        for (int i = 0; i < 30; i++) {
+            Reporte r1 = new Reporte();
+            r1.setDescripcion("nuevo reporte");
+            r1.setTitulo("Texto de prueba" + i);
+            lista.add(r1);
+        }
+
+        this.rs.guardarListaReporte(lista);
         
 
             return 0;
