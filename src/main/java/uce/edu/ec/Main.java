@@ -6,11 +6,13 @@ import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
+import uce.edu.ec.aplication.service.AuditoriaService;
+import uce.edu.ec.aplication.service.EstudianteService;
 import uce.edu.ec.aplication.service.FacturaService;
 import uce.edu.ec.aplication.service.FacturaServiceCompletadoFuture;
 import uce.edu.ec.aplication.service.FacturaServiceParalelo;
 import uce.edu.ec.aplication.service.MatriculaService;
-import uce.edu.ec.domain.model.Factura;
+import uce.edu.ec.domain.model.Estudiante;
 
 @QuarkusMain
 public class Main {
@@ -33,22 +35,35 @@ public class Main {
         @Inject
         private FacturaServiceCompletadoFuture fsc;
 
+        @Inject
+        private EstudianteService es;
+
+        @Inject
+        private AuditoriaService as;
+
         @Override
         public int run(String... args) throws Exception {
-       
-            String nombreHilo = Thread.currentThread().getName();
-            System.out.println("Nombre del hilo MAIN:" + nombreHilo);
-            System.out.println("ID: "+ Thread.currentThread().threadId());
+        
+        System.out.println("Conectado a la BASE DE DATOS");
+        Estudiante estu = new Estudiante();
+        estu.setNombre("Andyy");
+        estu.setApellido("Aguas");
+        estu.setFechaNacimineto(LocalDate.now());
+        estu.setGenero("M");
+        this.es.guardar(estu);
+        
+        //actualizar
+        Estudiante estuAc = this.es.buscarPorId(3);
+        estuAc.setNombre("Ale_");
+        //this.es.actualizar(estuAc);
+        
+        //eliminar
+        Integer eliminar = 2;
+        //Estudiante estudiante = this.es.buscarPorId(eliminar);    
+        //this.es.eliminar(eliminar);
+        
+        
 
-            Factura f1 = new Factura();
-            f1.setFecha(LocalDate.now());
-            f1.setNumero("0001-9999");
-            f1.setRuc("1727556");
-
-            fsc.guardar(f1);
-            
-            
- 
             return 0;
         }
     }

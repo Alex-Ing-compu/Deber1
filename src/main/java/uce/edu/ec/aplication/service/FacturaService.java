@@ -8,7 +8,7 @@ import jakarta.transaction.Transactional;
 import uce.edu.ec.domain.model.Factura;
 import uce.edu.ec.domain.model.Mail;
 import uce.edu.ec.domain.model.Reporte;
-import uce.edu.ec.domain.repository.MedirTiempo;
+import uce.edu.ec.domain.repository.Auditar;
 import uce.edu.ec.infrastructure.repository.FacturaRepositoryImpl;
 
 @ApplicationScoped
@@ -24,7 +24,7 @@ public class FacturaService {
     @Inject
     private MailService ms;
 
-    @MedirTiempo
+    @Auditar
     public void guardar(Factura factura) {
 
         String nombreHilo = Thread.currentThread().getName();

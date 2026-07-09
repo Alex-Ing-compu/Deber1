@@ -3,13 +3,14 @@ package uce.edu.ec.aplication.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import uce.edu.ec.domain.model.Mail;
-import uce.edu.ec.domain.repository.MedirTiempo;
+import uce.edu.ec.domain.repository.Auditar;
+
 
 @ApplicationScoped
 @Transactional
 public class MailService {
 
-    @MedirTiempo
+    @Auditar
     public void guardarMail(Mail mail) {
 
         String nombreHilo = Thread.currentThread().getName();

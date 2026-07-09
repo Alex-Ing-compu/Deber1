@@ -7,7 +7,7 @@ import uce.edu.ec.domain.model.HistorialAcademico;
 import uce.edu.ec.domain.model.Matricula;
 import uce.edu.ec.domain.model.Notificacion;
 import uce.edu.ec.domain.model.Pago;
-import uce.edu.ec.domain.repository.MedirTiempo;
+import uce.edu.ec.domain.repository.Auditar;
 import uce.edu.ec.infrastructure.repository.MatriculaRepositoryImpl;
 
 @ApplicationScoped
@@ -26,7 +26,7 @@ public class MatriculaService {
     @Inject
     private NotificacionService notificacionService;
 
-    @MedirTiempo
+    @Auditar
     public void matricularEstudiante(Matricula matricula) {
         
         String nombreHilo = Thread.currentThread().getName();
