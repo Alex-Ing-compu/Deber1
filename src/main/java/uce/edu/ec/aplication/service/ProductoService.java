@@ -5,21 +5,21 @@ import java.util.List;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import uce.edu.ec.domain.model.Reporte;
+import uce.edu.ec.domain.model.Producto;
 import uce.edu.ec.domain.repository.Auditar;
 
 @ApplicationScoped
-public class ReporteService {
-
+public class ProductoService {
+    
     @Inject
-    private ReporteService self;
+    private ProductoService ps;
 
     @Auditar
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void guardarReporte(Reporte reporte) {
+    public void guardarProducto(Producto producto) {
 
         String nombreHilo = Thread.currentThread().getName();
-        System.out.println("Nombre del hilo REPORTESERVICE: " + nombreHilo);
+        System.out.println("Nombre del hilo PRODUCTOSERVICE: " + nombreHilo);
         System.out.println("ID: " + Thread.currentThread().threadId());
 
         try {
@@ -28,17 +28,17 @@ public class ReporteService {
             System.err.println("Error en sleep: " + e.getMessage());
         }
         
-        reporte.persist();
+        producto.persist();
     }
 
     @Transactional 
-    public void guardarListaReporte(List<Reporte> lista) {
-        for (Reporte p : lista) {
-            this.self.guardarReporte(p);
+    public void guardarListaProducto(List<Producto> lista) {
+        for (Producto p : lista) {
+            this.ps.guardarProducto(p);
         }
     }
 
-    public Reporte buscarReporteporId(Integer id) {
-        return Reporte.findById(id);
+    public Producto buscarProductoporId(Integer id) {
+        return Producto.findById(id);
     }
 }

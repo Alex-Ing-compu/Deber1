@@ -1,5 +1,6 @@
 package uce.edu.ec;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,8 +14,9 @@ import uce.edu.ec.aplication.service.FacturaService;
 import uce.edu.ec.aplication.service.FacturaServiceCompletadoFuture;
 import uce.edu.ec.aplication.service.FacturaServiceParalelo;
 import uce.edu.ec.aplication.service.MatriculaService;
+import uce.edu.ec.aplication.service.ProductoService;
 import uce.edu.ec.aplication.service.ReporteService;
-import uce.edu.ec.domain.model.Reporte;
+import uce.edu.ec.domain.model.Producto;
 
 @QuarkusMain
 public class Main {
@@ -46,22 +48,32 @@ public class Main {
         @Inject
         private ReporteService rs;
 
+        @Inject
+        private ProductoService productoService;
+
         @Override
         public int run(String... args) throws Exception {
         
         System.out.println("Conectado a la BASE DE DATOS");
-        
-        List<Reporte> lista = new ArrayList<>();
+       
+        //Deber : PARALLEL STREAM
+        List<Producto> listaQuinientos = new ArrayList<>();
 
-        for (int i = 0; i < 30; i++) {
-            Reporte r1 = new Reporte();
-            r1.setDescripcion("nuevo reporte");
-            r1.setTitulo("Texto de prueba" + i);
-            lista.add(r1);
-        }
+            for (int i = 1; i <= 500; i++) {
+                Producto prod = new Producto();
+                prod.setCodigo("PROD-" + String.format("%04d", i)); 
+                prod.setNombre("Artículo Tecnológico " + i);
+                prod.setPrecio(10.0 + (i * 0.5)); 
+                prod.setStock(10 + i);
+                prod.setFechaIngreso(LocalDate.now());
 
-        this.rs.guardarListaReporte(lista);
-        
+                listaQuinientos.add(prod); 
+            }
+
+            System.out.println("Lista de " + listaQuinientos.size() + " productos lista para enviar");
+            this.productoService.guardarListaProducto(listaQuinientos);       
+
+            System.out.println("Proceso finalizado");
 
             return 0;
         }
