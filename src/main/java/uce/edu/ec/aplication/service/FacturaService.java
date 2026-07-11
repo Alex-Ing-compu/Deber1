@@ -38,7 +38,7 @@ public class FacturaService {
         r.setFormato("PDF");
         r.setDescripcion("El siguiente reporte se da sobre las ventas obtenidas");
         r.setFecha(LocalDate.now());
-        this.rs.guardarReporte(r);
+        //this.rs.guardarReporte(r);
 
         Mail m = new Mail();
         m.setAsunto("Factura");

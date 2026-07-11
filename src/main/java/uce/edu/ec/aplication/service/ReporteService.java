@@ -7,38 +7,58 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import uce.edu.ec.domain.model.Reporte;
 import uce.edu.ec.domain.repository.Auditar;
+import uce.edu.ec.infrastructure.repository.ReporteRepositoryImpl;
 
 @ApplicationScoped
 public class ReporteService {
 
     @Inject
-    private ReporteService self;
+    private ReporteRepositoryImpl rsi;
+    
+    @Auditar
+    @Transactional
+    public void guardarReporte(Reporte reporte) throws InterruptedException {
+ 
+        String nombreHilo = Thread.currentThread().getName();
+        System.out.println("nombre del hilo REPORTESERVICE:" + nombreHilo);
+        System.out.println("ID: " + Thread.currentThread().threadId());
+        Thread.sleep(0);
+ 
+        reporte.persist();
+ 
+    }
+
+    //otro
+     @Auditar
+    public void guardarListadeReporteParalela(List<Reporte> lista) throws InterruptedException{
+       
+       
+        lista.parallelStream().forEach(rep ->{
+            //Aqui programo toda la logica que quiero que se aplique a cada item de la lista
+            try {
+                this.guardarReporte(rep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+ 
+    }
+
 
     @Auditar
-    @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void guardarReporte(Reporte reporte) {
-
-        String nombreHilo = Thread.currentThread().getName();
-        System.out.println("Nombre del hilo REPORTESERVICE: " + nombreHilo);
-        System.out.println("ID: " + Thread.currentThread().threadId());
-
-        try {
-            Thread.sleep(3000); 
-        } catch (Exception e) {
-            System.err.println("Error en sleep: " + e.getMessage());
+    public void guardarListadeReporte(List<Reporte> listar) throws InterruptedException{
+       
+        for(Reporte p : listar){
+            this.guardarReporte(p);
+ 
         }
-        
-        reporte.persist();
+ 
     }
-
-    @Transactional 
-    public void guardarListaReporte(List<Reporte> lista) {
-        for (Reporte p : lista) {
-            this.self.guardarReporte(p);
-        }
-    }
-
+ 
     public Reporte buscarReporteporId(Integer id) {
+ 
         return Reporte.findById(id);
+ 
     }
+ 
 }

@@ -22,7 +22,7 @@ public class ReporteServiceTarea implements Runnable {
         System.out.println(this.rs);
         String nombreHilo = Thread.currentThread().getName();
         System.out.println("Nombre del hilo ReportesServiceTarea:" + nombreHilo);
-        this.rs.guardarReporte(reporte);
+        //this.rs.gurdarReporte(reporte);
     }
     
 

@@ -1,6 +1,5 @@
 package uce.edu.ec;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import uce.edu.ec.aplication.service.FacturaServiceParalelo;
 import uce.edu.ec.aplication.service.MatriculaService;
 import uce.edu.ec.aplication.service.ProductoService;
 import uce.edu.ec.aplication.service.ReporteService;
-import uce.edu.ec.domain.model.Producto;
+import uce.edu.ec.domain.model.Reporte;
 
 @QuarkusMain
 public class Main {
@@ -56,24 +55,20 @@ public class Main {
         
         System.out.println("Conectado a la BASE DE DATOS");
        
-        //Deber : PARALLEL STREAM
-        List<Producto> listaQuinientos = new ArrayList<>();
+         List<Reporte> lista = new ArrayList<>();
 
-            for (int i = 1; i <= 500; i++) {
-                Producto prod = new Producto();
-                prod.setCodigo("PROD-" + String.format("%04d", i)); 
-                prod.setNombre("Artículo Tecnológico " + i);
-                prod.setPrecio(10.0 + (i * 0.5)); 
-                prod.setStock(10 + i);
-                prod.setFechaIngreso(LocalDate.now());
+        for (int i = 0; i < 100000; i++) {
+            Reporte r1 = new Reporte();
+            r1.setDescripcion("nuevo reporte");
+            r1.setTitulo("Texto de prueba" + i);
+            lista.add(r1);
+        }
+        //sin paralelo
+        this.rs.guardarListadeReporte(lista);//11280ms //10061ms
 
-                listaQuinientos.add(prod); 
-            }
+        //con paralelo
+        //this.rs.guardarListadeReporteParalela(lista);//2554ms //4342
 
-            System.out.println("Lista de " + listaQuinientos.size() + " productos lista para enviar");
-            this.productoService.guardarListaProducto(listaQuinientos);       
-
-            System.out.println("Proceso finalizado");
 
             return 0;
         }

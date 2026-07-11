@@ -21,7 +21,7 @@ public class Auditoria {
     private Integer id;
     @Column(name="audi_nombre_metodo")
     private String nombreMetodo;
-    @Column(name="audi_argumentos")
+    @Column(name = "audi_argumentos", columnDefinition = "TEXT")
     private String argumentos;
     @Column(name="audi_fecha_hora_ejecucion")
     private LocalDateTime fechaHoraEjecucion;

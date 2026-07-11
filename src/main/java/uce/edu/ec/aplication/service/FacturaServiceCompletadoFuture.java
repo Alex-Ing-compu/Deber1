@@ -41,7 +41,7 @@ public class FacturaServiceCompletadoFuture {
         r.setFecha(LocalDate.now());
         //this.rs.guardarReporte(r);
 
-        CompletableFuture<Void> completableReporte = CompletableFuture.runAsync(()->this.rs.guardarReporte(r));
+        //CompletableFuture<Void> completableReporte = CompletableFuture.runAsync(()->this.rs.guardarReporte(r));
 
         Mail m = new Mail();
         m.setAsunto("Factura");
@@ -51,7 +51,7 @@ public class FacturaServiceCompletadoFuture {
 
         CompletableFuture<Void> completableMail = CompletableFuture.runAsync(()->this.ms.guardarMail(m));
 
-        CompletableFuture.allOf(completableReporte, completableMail).join();
+        //CompletableFuture.allOf(completableReporte, completableMail).join();
 
 
     }
