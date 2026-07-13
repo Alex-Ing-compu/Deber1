@@ -47,11 +47,12 @@ public class ReporteService {
 
     @Auditar
     public void guardarListadeReporte(List<Reporte> listar) throws InterruptedException{
-       
+       //forma secuencial
         for(Reporte p : listar){
             this.guardarReporte(p);
  
         }
+        
  
     }
  

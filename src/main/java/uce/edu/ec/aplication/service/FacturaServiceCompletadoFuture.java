@@ -53,7 +53,6 @@ public class FacturaServiceCompletadoFuture {
 
         //CompletableFuture.allOf(completableReporte, completableMail).join();
 
-
     }
 
 
