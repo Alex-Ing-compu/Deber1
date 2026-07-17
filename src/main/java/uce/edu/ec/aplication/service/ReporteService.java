@@ -16,7 +16,7 @@ public class ReporteService {
     private ReporteRepositoryImpl rri;
 
     public List<Reporte> buscarTodos(){
-        return (List<Reporte>) this.rri.findAll();
+        return this.rri.findAll().list();
     }
 
 
